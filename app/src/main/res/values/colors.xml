@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="color_base">#f3f3f3</color>
+
+    <color name="text_base_color">#181b1d</color>
+
+    <color name="textColorSecondaryInverseNormal">#AFFFFFFF</color>
+    <color name="textColorSecondaryInverseSelecte">#FFFFFFFF</color>
+
+    <color name="text_hirt">#FF484444</color>
+    <color name="color_878787">#878787</color>
+    <color name="cut_line_color">#44333333</color>
+
+</resources>

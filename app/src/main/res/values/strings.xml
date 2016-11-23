@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">News</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="error_loading">(T_T) 亲，出错了，请等会再试哦！</string>
+    <string name="loading_tip">点击再次加载</string>
+
+    <string name="test_title_short">老规矩</string>
+    <string name="test_context_short">老师：菊花在什么时候盛开？ 小明：大便的时候。 老师：老规矩。 小明：知道，这就滚。</string>
+    <!-- error -->
+    <string name="error_hint">点击页面刷新</string>
+</resources>
