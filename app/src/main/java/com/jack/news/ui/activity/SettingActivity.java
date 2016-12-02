@@ -8,20 +8,19 @@ import com.jack.common.base.BaseActivity;
 import com.jack.news.R;
 import com.jack.news.ui.fragment.SettingFragment;
 
-import butterknife.BindView;
-
 /**
  * Created by Em on 2015/12/9.
  */
 public class SettingActivity extends BaseActivity {
 
-    @BindView(R.id.toolbar)
+//    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        toolbar= (Toolbar) findViewById(R.id.toolbar);
         this.initActionBar();
         this.initFragment();
     }
