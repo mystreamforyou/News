@@ -80,10 +80,10 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case R.id.nav_news:
                 break;
-            case R.id.nav_jack:
-                break;
-            case R.id.nav_meizi:
-                break;
+//            case R.id.nav_jack:
+//                break;
+//            case R.id.nav_meizi:
+//                break;
             case R.id.nav_theme:
                 ThemeUtils.changeTheme(this);
                 break;

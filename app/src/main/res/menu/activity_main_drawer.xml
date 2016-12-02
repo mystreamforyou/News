@@ -9,14 +9,14 @@
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_home_grey_500_18dp"
             android:title="@string/nav_news"/>
-        <item
-            android:id="@+id/nav_jack"
-            android:icon="@drawable/ic_local_cafe_grey_500_18dp"
-            android:title="@string/nav_jack"/>
-        <item
-            android:id="@+id/nav_meizi"
-            android:icon="@drawable/ic_local_florist_grey_500_18dp"
-            android:title="@string/nav_meizi"/>
+        <!--<item-->
+            <!--android:id="@+id/nav_jack"-->
+            <!--android:icon="@drawable/ic_local_cafe_grey_500_18dp"-->
+            <!--android:title="@string/nav_jack"/>-->
+        <!--<item-->
+            <!--android:id="@+id/nav_meizi"-->
+            <!--android:icon="@drawable/ic_local_florist_grey_500_18dp"-->
+            <!--android:title="@string/nav_meizi"/>-->
     </group>
 
     <item android:title="@string/setting">
