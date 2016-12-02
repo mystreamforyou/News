@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.jack.common.lce.MvpLceFragment;
+import com.jack.common.utils.RetrofitErrorFilter;
 import com.jack.news.R;
 import com.jack.news.model.news.News;
 import com.jack.news.model.news.NewsList;
@@ -79,7 +80,9 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
 
     @Override
     protected String getErrorMessage(Throwable e, boolean pullToRefresh) {
-        return null;
+        //java.net.UnknownHostException: Unable to resolve host "v.juhe.cn": No address associated with hostname
+        Log.i(TAG, e.toString());
+        return RetrofitErrorFilter.filterError(e).getMessage();
     }
 
     @Override
@@ -102,6 +105,7 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
 
     @Override
     public void loadData(boolean pullToRefresh) {
+        showLoading(pullToRefresh);
         getPresenter().getNewsByType(type);
     }
 

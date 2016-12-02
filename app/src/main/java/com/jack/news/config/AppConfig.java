@@ -34,4 +34,6 @@ public class AppConfig implements CommonConfig {
     public String getAPP_KEY() {
         return APP_KEY;
     }
+
+    public static final String SHARE_PREFERENCES_NAME = ".newme.pre";
 }

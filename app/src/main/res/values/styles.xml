@@ -33,4 +33,30 @@
         <item name="textAllCaps">false</item>
     </style>
 
+
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <style name="BaseTheme.Night" parent="Theme.AppCompat.NoActionBar">
+    </style>
+
+    <style name="ViewerTheme" parent="BaseTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <!-- ActionBar Theme Start -->
+    <style name="MyActionBarPopupDrak" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:background">@color/black_backgroud</item>
+        <item name="android:textColor">@color/black_text_light</item>
+    </style>
+    <style name="MyActionBarPopup" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:background">?attr/colorBackground</item>
+        <item name="android:textColor">?attr/colorTextLight</item>
+    </style>
+    <style name="MyActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:actionModeBackground">?attr/colorPrimary</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
 </resources>

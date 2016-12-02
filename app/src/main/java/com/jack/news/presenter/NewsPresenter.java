@@ -44,6 +44,7 @@ public class NewsPresenter extends MvpPresenter<NewsView> {
                 Log.i("NewsFragment", "-------- " + newsModel.toString());
                 if (isViewAttached()) {
                     getView().setData(newsModel.result);
+                    getView().showContent();
                 }
             }
         });
