@@ -1,7 +1,9 @@
 package com.jack.news.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -15,10 +17,8 @@ import com.jack.news.presenter.NewsPresenter;
 import com.jack.news.ui.adapter.NewsAdapter;
 import com.jack.news.view.NewsView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
+import io.realm.Realm;
 
 /**
  * Description:
@@ -40,9 +40,7 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
     @BindView(R.id.content)
     RecyclerView recyclerView;
 
-    NewsAdapter adapter;
-
-    List<News> newses;
+    private Realm realm;
 
     private String type = "top";
 
@@ -59,6 +57,12 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        realm = Realm.getDefaultInstance();
+    }
+
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initRylView();
@@ -66,10 +70,8 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
     }
 
     private void initRylView() {
-        newses = new ArrayList<>();
-        adapter = new NewsAdapter(newses, getContext());
-        recyclerView.setAdapter(adapter);
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(new NewsAdapter(realm.where(News.class).findAllAsync(), getContext()));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -91,16 +93,19 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
     }
 
     @Override
-    public void setData(NewsList data) {
+    public void setData(final NewsList data) {
         if (swipeRefreshLayout.isRefreshing()) {
             swipeRefreshLayout.setRefreshing(false);
         }
         Log.i(TAG, data.toString());
-        if (newses.size() > 0) {
-            newses.clear();
+        if (null != data.data && data.data.size() > 0) {
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    realm.insertOrUpdate(data.data);
+                }
+            });
         }
-        newses.addAll(data.data);
-        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -112,5 +117,12 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
     @Override
     public NewsPresenter createPresenter() {
         return new NewsPresenter();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (!realm.isClosed())
+            realm.close();
     }
 }

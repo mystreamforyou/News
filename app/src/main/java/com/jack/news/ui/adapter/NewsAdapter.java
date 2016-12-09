@@ -15,10 +15,10 @@ import com.jack.news.R;
 import com.jack.news.model.news.News;
 import com.jack.news.ui.activity.WebViewActivity;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.OrderedRealmCollection;
+import io.realm.RealmRecyclerViewAdapter;
 
 /**
  * Description:
@@ -29,24 +29,23 @@ import butterknife.ButterKnife;
  **/
 
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
+public class NewsAdapter extends RealmRecyclerViewAdapter<News, NewsAdapter.NewsViewHolder> {
 
     public static final int TYPE_IMG_SINGLE = 1;
     public static final int TYPE_IMG_MULTI = 3;
 
-    private List<News> newses;
     private Context context;
     private LayoutInflater inflater;
 
-    public NewsAdapter(List<News> data, Context context) {
-        newses = data;
+    public NewsAdapter(OrderedRealmCollection<News> data, Context context) {
+        super(context, data, true);
         this.context = context;
         inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getItemViewType(int position) {
-        News news = newses.get(position);
+        News news = getData().get(position);
         if (TextUtils.isEmpty(news.thumbnailPicS02) || TextUtils.isEmpty(news.thumbnailPicS03) || news.thumbnailPicS02.equals(news.thumbnailPicS03)) {
             return TYPE_IMG_SINGLE;
         }
@@ -69,7 +68,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
-        final News news = newses.get(position);
+        final News news = getData().get(position);
         holder.title.setText(news.title);
         holder.author.setText(news.authorName);
         holder.date.setText(news.date);
@@ -91,7 +90,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public int getItemCount() {
-        return newses == null ? null : newses.size();
+        return getData() == null ? null : getData().size();
     }
 
 

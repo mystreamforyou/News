@@ -5,6 +5,8 @@ import com.jack.common.CommonApp;
 import com.jack.common.rest.RestUtils;
 import com.jack.news.config.AppConfig;
 
+import io.realm.Realm;
+
 /**
  * Description:
  * Copyright  : Copyright (c) 2015
@@ -19,6 +21,7 @@ public class NewsApp extends CommonApp {
     public void onCreate() {
         super.onCreate();
         RestUtils.init(AppConfig.getInstance());
+        Realm.init(this);
         Stetho.initializeWithDefaults(this);
     }
 }

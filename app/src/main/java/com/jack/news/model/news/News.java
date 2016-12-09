@@ -3,6 +3,8 @@ package com.jack.news.model.news;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.RealmObject;
+
 /**
  * Description:
  * Copyright  : Copyright (c) 2015
@@ -11,7 +13,7 @@ import com.google.gson.annotations.SerializedName;
  * Date       : 2016/11/10
  **/
 
-public class News {
+public class News extends RealmObject {
 
     /**
      * uniquekey
