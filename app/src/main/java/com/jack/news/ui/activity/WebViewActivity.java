@@ -3,7 +3,6 @@ package com.jack.news.ui.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import com.jack.common.base.BaseActivity;
 import com.jack.common.utils.NetWorkUtils;
 import com.jack.news.R;
+import com.jack.news.widget.TopActionBar;
 
 import butterknife.BindView;
 
@@ -28,12 +28,12 @@ import butterknife.BindView;
  * Date       : 2016/1/6
  **/
 
-public class WebViewActivity extends BaseActivity {
+public class WebViewActivity extends BaseActivity implements TopActionBar.BackListener {
     @BindView(R.id.wv_view)
     WebView webView;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.topbar)
+    TopActionBar topActionBar;
 
     @BindView(R.id.loadingView)
     ProgressBar progressBar;
@@ -63,7 +63,8 @@ public class WebViewActivity extends BaseActivity {
     }
 
     private void initTitleBar() {
-        toolbar.setTitle(title);
+        topActionBar.setTitle(R.string.detail);
+        topActionBar.setBackListener(this);
     }
 
     private void initWebView() {
@@ -154,5 +155,10 @@ public class WebViewActivity extends BaseActivity {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         webView.saveState(outState);
+    }
+
+    @Override
+    public void onBack() {
+        finish();
     }
 }

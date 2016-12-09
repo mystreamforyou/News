@@ -5,4 +5,9 @@
     <attr name="colorTextDark" format="reference|color"/>
     <attr name="colorBackground" format="reference|color"/>
     <attr name="colorNavItem" format="reference|color"/>
+    <declare-styleable name="TopActionBar">
+        <!--<attr name="textColor" format="color" />-->
+        <!--<attr name="textSize" format="dimension" />-->
+        <attr name="text" format="string" />
+    </declare-styleable>
 </resources>

@@ -6,6 +6,8 @@
 
     <color name="color_base">#f3f3f3</color>
 
+    <color name="write">#ffffff</color>
+
     <color name="text_base_color">#181b1d</color>
 
     <color name="textColorSecondaryInverseNormal">#AFFFFFFF</color>
