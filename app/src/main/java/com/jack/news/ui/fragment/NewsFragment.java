@@ -71,6 +71,7 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
 
     private void initRylView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        Log.i(TAG, "initRylView size " + realm.where(News.class).findAll().size());
         recyclerView.setAdapter(new NewsAdapter(realm.where(News.class).findAllAsync(), getContext()));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -97,12 +98,13 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
         if (swipeRefreshLayout.isRefreshing()) {
             swipeRefreshLayout.setRefreshing(false);
         }
-        Log.i(TAG, data.toString());
+        Log.i(TAG, "setData " + data.toString());
         if (null != data.data && data.data.size() > 0) {
             realm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
-                    realm.insertOrUpdate(data.data);
+                    realm.delete(News.class);
+                    realm.insert(data.data);
                 }
             });
         }
@@ -111,7 +113,17 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
     @Override
     public void loadData(boolean pullToRefresh) {
         showLoading(pullToRefresh);
+        Log.i(TAG, "loadData type " + type);
         getPresenter().getNewsByType(type);
+    }
+
+    @Override
+    public void showError(Throwable e, boolean pullToRefresh) {
+        Log.i(TAG, "showError size " + realm.where(News.class).findAll().size());
+        loadingView.setVisibility(View.GONE);
+        contentView.setVisibility(View.VISIBLE);
+        errorView.setVisibility(View.GONE);
+        showTip(getErrorMessage(e, pullToRefresh));
     }
 
     @Override
