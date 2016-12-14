@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.jack.news.R;
 import com.jack.news.ui.fragment.NewsChannelFragment;
+import com.jack.news.utils.RealmUtils;
 import com.jack.news.utils.ThemeUtils;
 
 public class MainActivity extends AppCompatActivity
@@ -99,5 +100,11 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RealmUtils.closeRealms();
     }
 }

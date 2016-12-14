@@ -66,12 +66,12 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        realm = RealmUtils.getRealm(newsType);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        realm = RealmUtils.getRealm(newsType);
         initRylView();
         loadData(false);
     }
@@ -138,12 +138,5 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
     @Override
     public NewsPresenter createPresenter() {
         return new NewsPresenter();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (!realm.isClosed())
-            realm.close();
     }
 }

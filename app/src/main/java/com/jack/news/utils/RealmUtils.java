@@ -95,4 +95,37 @@ public class RealmUtils {
                 .schemaVersion(DB_VERSION)
                 .build();
     }
+
+    public static void closeRealms() {
+        if (realmMap.containsKey(Channel.TOP) && realmMap.get(Channel.TOP).isClosed()) {
+            realmMap.get(Channel.TOP).close();
+        }
+        if (realmMap.containsKey(Channel.SHEHUI) && realmMap.get(Channel.SHEHUI).isClosed()) {
+            realmMap.get(Channel.SHEHUI).close();
+        }
+        if (realmMap.containsKey(Channel.GUONEI) && realmMap.get(Channel.GUONEI).isClosed()) {
+            realmMap.get(Channel.GUONEI).close();
+        }
+        if (realmMap.containsKey(Channel.GUOJI) && realmMap.get(Channel.GUOJI).isClosed()) {
+            realmMap.get(Channel.GUOJI).close();
+        }
+        if (realmMap.containsKey(Channel.YULE) && realmMap.get(Channel.YULE).isClosed()) {
+            realmMap.get(Channel.YULE).close();
+        }
+        if (realmMap.containsKey(Channel.TIYU) && realmMap.get(Channel.TIYU).isClosed()) {
+            realmMap.get(Channel.TIYU).close();
+        }
+        if (realmMap.containsKey(Channel.JUNSHI) && realmMap.get(Channel.JUNSHI).isClosed()) {
+            realmMap.get(Channel.JUNSHI).close();
+        }
+        if (realmMap.containsKey(Channel.KEJI) && realmMap.get(Channel.KEJI).isClosed()) {
+            realmMap.get(Channel.KEJI).close();
+        }
+        if (realmMap.containsKey(Channel.CAIJING) && realmMap.get(Channel.CAIJING).isClosed()) {
+            realmMap.get(Channel.CAIJING).close();
+        }
+        if (realmMap.containsKey(Channel.SHISHANG) && realmMap.get(Channel.SHISHANG).isClosed()) {
+            realmMap.get(Channel.SHISHANG).close();
+        }
+    }
 }
