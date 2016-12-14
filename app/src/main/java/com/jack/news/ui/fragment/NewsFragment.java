@@ -13,8 +13,10 @@ import com.jack.common.utils.RetrofitErrorFilter;
 import com.jack.news.R;
 import com.jack.news.model.news.News;
 import com.jack.news.model.news.NewsList;
+import com.jack.news.model.news.NewsType;
 import com.jack.news.presenter.NewsPresenter;
 import com.jack.news.ui.adapter.NewsAdapter;
+import com.jack.news.utils.RealmUtils;
 import com.jack.news.view.NewsView;
 
 import butterknife.BindView;
@@ -34,7 +36,6 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
     private static final String BUNDLE_ID = "id";
     private static final String BUNDLE_NAME = "name";
 
-
     @BindView(R.id.refresher)
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.content)
@@ -42,7 +43,11 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
 
     private Realm realm;
 
+    private NewsAdapter newsAdapter;
+
     private String type = "top";
+
+    private int newsType = NewsType.TYPE_TOP;
 
     public static NewsFragment newInstance() {
         NewsFragment fragment = new NewsFragment();
@@ -53,13 +58,15 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
 
     public void setType(String type) {
         this.type = type;
+        newsType = getPresenter().getNewsType(type);
+        realm = RealmUtils.getRealm(newsType);
         loadData(false);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        realm = Realm.getDefaultInstance();
+        realm = RealmUtils.getRealm(newsType);
     }
 
     @Override
@@ -72,7 +79,8 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
     private void initRylView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         Log.i(TAG, "initRylView size " + realm.where(News.class).findAll().size());
-        recyclerView.setAdapter(new NewsAdapter(realm.where(News.class).findAllAsync(), getContext()));
+        newsAdapter = new NewsAdapter(realm.where(News.class).findAll(), getContext());
+        recyclerView.setAdapter(newsAdapter);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -98,16 +106,17 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
         if (swipeRefreshLayout.isRefreshing()) {
             swipeRefreshLayout.setRefreshing(false);
         }
-        Log.i(TAG, "setData " + data.toString());
         if (null != data.data && data.data.size() > 0) {
-            realm.executeTransaction(new Realm.Transaction() {
+            realm.executeTransactionAsync(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
+                    //插入
                     realm.delete(News.class);
                     realm.insert(data.data);
                 }
             });
         }
+        newsAdapter.updateData(realm.where(News.class).findAll());
     }
 
     @Override
@@ -119,7 +128,7 @@ public class NewsFragment extends MvpLceFragment<NewsList, NewsView, NewsPresent
 
     @Override
     public void showError(Throwable e, boolean pullToRefresh) {
-        Log.i(TAG, "showError size " + realm.where(News.class).findAll().size());
+        newsAdapter.updateData(realm.where(News.class).findAll());
         loadingView.setVisibility(View.GONE);
         contentView.setVisibility(View.VISIBLE);
         errorView.setVisibility(View.GONE);

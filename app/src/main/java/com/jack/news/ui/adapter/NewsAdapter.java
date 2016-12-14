@@ -46,7 +46,7 @@ public class NewsAdapter extends RealmRecyclerViewAdapter<News, NewsAdapter.News
     @Override
     public int getItemViewType(int position) {
         News news = getData().get(position);
-        if (TextUtils.isEmpty(news.thumbnailPicS02) || TextUtils.isEmpty(news.thumbnailPicS03) || news.thumbnailPicS02.equals(news.thumbnailPicS03)) {
+        if (TextUtils.isEmpty(news.getThumbnailPicS02()) || TextUtils.isEmpty(news.getThumbnailPicS03()) || news.getThumbnailPicS02().equals(news.getThumbnailPicS03())) {
             return TYPE_IMG_SINGLE;
         }
         return TYPE_IMG_MULTI;
@@ -69,20 +69,20 @@ public class NewsAdapter extends RealmRecyclerViewAdapter<News, NewsAdapter.News
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
         final News news = getData().get(position);
-        holder.title.setText(news.title);
-        holder.author.setText(news.authorName);
-        holder.date.setText(news.date);
-        Glide.with(context).load(news.thumbnailPicS).into(holder.image1);
+        holder.title.setText(news.getTitle());
+        holder.author.setText(news.getAuthorName());
+        holder.date.setText(news.getDate());
+        Glide.with(context).load(news.getThumbnailPicS()).into(holder.image1);
         if (TYPE_IMG_MULTI == getItemViewType(position)) {
-            Glide.with(context).load(news.thumbnailPicS02).into(holder.image2);
-            Glide.with(context).load(news.thumbnailPicS03).into(holder.image3);
+            Glide.with(context).load(news.getThumbnailPicS02()).into(holder.image2);
+            Glide.with(context).load(news.getThumbnailPicS03()).into(holder.image3);
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra("title", news.title);
-                intent.putExtra("url", news.url);
+                intent.putExtra("title", news.getTitle());
+                intent.putExtra("url", news.getUrl());
                 context.startActivity(intent);
             }
         });

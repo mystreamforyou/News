@@ -4,8 +4,7 @@ import com.facebook.stetho.Stetho;
 import com.jack.common.CommonApp;
 import com.jack.common.rest.RestUtils;
 import com.jack.news.config.AppConfig;
-
-import io.realm.Realm;
+import com.jack.news.utils.RealmUtils;
 
 /**
  * Description:
@@ -21,7 +20,7 @@ public class NewsApp extends CommonApp {
     public void onCreate() {
         super.onCreate();
         RestUtils.init(AppConfig.getInstance());
-        Realm.init(this);
+        RealmUtils.init(this);
         Stetho.initializeWithDefaults(this);
     }
 }

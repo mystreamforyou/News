@@ -16,6 +16,17 @@ public class Channel {
 
     //类型,,top(头条，默认),shehui(社会),guonei(国内),guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
 
+    public static final String TOP = "top";
+    public static final String SHEHUI = "shehui";
+    public static final String GUONEI = "guonei";
+    public static final String GUOJI = "guoji";
+    public static final String YULE = "yule";
+    public static final String TIYU = "tiyu";
+    public static final String JUNSHI = "junshi";
+    public static final String KEJI = "keji";
+    public static final String CAIJING = "caijing";
+    public static final String SHISHANG = "shishang";
+
     private static final List<Channel> mChannels = new ArrayList<>();
 
     static {
