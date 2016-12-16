@@ -57,4 +57,10 @@
     <string name="setting_app_wall">应用墙</string>
     <string name="setting_desc_hid_benefits">是否开启隐藏福利</string>
     <string name="setting_notify_is_open">开启通知</string>
+
+
+    <string name="version">版本号：V1.0</string>
+    <string name="copyright">Copyright 2016</string>
+    <string name="copyright2">版权所有</string>
+    <string name="self_ad_text">属于自己一个人的咨询平台</string>
 </resources>

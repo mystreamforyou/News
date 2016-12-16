@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import com.jack.news.R;
 import com.jack.news.ui.fragment.NewsChannelFragment;
 import com.jack.news.utils.RealmUtils;
-import com.jack.news.utils.ThemeUtils;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -85,14 +84,14 @@ public class MainActivity extends AppCompatActivity
 //                break;
 //            case R.id.nav_meizi:
 //                break;
-            case R.id.nav_theme:
-                ThemeUtils.changeTheme(this);
-                break;
+//            case R.id.nav_theme:
+//                ThemeUtils.changeTheme(this);
+//                break;
             case R.id.nav_setting:
-                Intent intent = new Intent(this, SettingActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(this, SettingActivity.class));
                 break;
             case R.id.nav_about:
+                startActivity(new Intent(this, AboutActivity.class));
                 break;
             default:
                 break;
