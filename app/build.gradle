@@ -21,6 +21,23 @@ android {
         sourceCompatibility project.JAVA_VERSION
     }
 
+    //签名
+//    signingConfigs {
+//        debug {
+//            storeFile file('../jack_key_sign')      //签名文件
+//            storePassword "123456"
+//            keyAlias "jacksign"
+//            keyPassword "123456"  //签名密码
+//        }
+//
+//        release {
+//            storeFile file('../jack_key_sign')      //签名文件
+//            storePassword "123456"
+//            keyAlias "jacksign"
+//            keyPassword "123456"  //签名密码
+//        }
+//    }
+
     buildTypes {
         release {
             minifyEnabled false

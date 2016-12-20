@@ -25,10 +25,10 @@
                 <!--android:id="@+id/nav_theme"-->
                 <!--android:icon="@drawable/ic_apps_grey_500_18dp"-->
                 <!--android:title="@string/theme"/>-->
-            <item
-                android:id="@+id/nav_setting"
-                android:icon="@drawable/ic_settings_grey_500_18dp"
-                android:title="@string/nav_setting"/>
+            <!--<item-->
+                <!--android:id="@+id/nav_setting"-->
+                <!--android:icon="@drawable/ic_settings_grey_500_18dp"-->
+                <!--android:title="@string/nav_setting"/>-->
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_brush_grey_500_18dp"

@@ -87,9 +87,9 @@ public class MainActivity extends AppCompatActivity
 //            case R.id.nav_theme:
 //                ThemeUtils.changeTheme(this);
 //                break;
-            case R.id.nav_setting:
-                startActivity(new Intent(this, SettingActivity.class));
-                break;
+//            case R.id.nav_setting:
+//                startActivity(new Intent(this, SettingActivity.class));
+//                break;
             case R.id.nav_about:
                 startActivity(new Intent(this, AboutActivity.class));
                 break;

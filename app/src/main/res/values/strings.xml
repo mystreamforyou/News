@@ -16,9 +16,6 @@
     <string name="theme">主题</string>
 
     <string name="nav_news">新闻</string>
-    <string name="nav_jack">轻松一刻</string>
-    <string name="nav_meizi">福利</string>
-    <string name="nav_setting">@string/setting</string>
 
 
     <string name="theme_name_blue">ME蓝</string>
