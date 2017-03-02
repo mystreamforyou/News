@@ -33,6 +33,7 @@
         android:layout_centerVertical="true"
         android:scaleType="fitCenter"
         android:src="@drawable/bar_share"
-        />
+        android:visibility="gone"
+    />
 
 </RelativeLayout>  
